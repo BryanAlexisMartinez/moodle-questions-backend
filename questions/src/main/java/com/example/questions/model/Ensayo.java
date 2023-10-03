@@ -1,10 +1,13 @@
 package com.example.questions.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -42,6 +45,10 @@ public class Ensayo {
 	
 	@Column(name = "informacion", nullable = false)
 	private String informacion;
+	
+	// Agrega una relación con Respuesta
+    @OneToOne(mappedBy = "pregunta", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Respuesta respuesta;
 
 	public Ensayo() {
 		super();
